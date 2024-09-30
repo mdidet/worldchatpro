@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
-import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+import { getDatabase, ref, onValue, push, get } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,41 +19,75 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app);
 
-// Get DOM elements
 const chatWindow = document.getElementById('chat-window');
 const messageInput = document.getElementById('message-input');
 const sendButton = document.getElementById('send-button');
+const usernameInput = document.getElementById('username-input');
+const setUsernameButton = document.getElementById('set-username');
 
-// Function to display messages
-function displayMessages() {
-    const messagesRef = ref(database, 'messages/');
-    onValue(messagesRef, (snapshot) => {
-        chatWindow.innerHTML = ''; // Clear the chat window
-        const messages = snapshot.val();
-        if (messages) {
-            Object.values(messages).forEach((msg) => {
-                const messageElement = document.createElement('div');
-                messageElement.textContent = msg;
-                chatWindow.appendChild(messageElement);
-            });
-        }
-        chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to the bottom
+let username = '';
+let userEmoji = '';
+
+// Generate a random emoji
+function generateEmoji() {
+    return String.fromCodePoint(0x1F600 + Math.floor(Math.random() * 80));
+}
+
+// Check if the username exists in the database
+function checkUsernameExists(username) {
+    const usersRef = ref(database, 'users/');
+    return get(usersRef).then((snapshot) => {
+        const users = snapshot.val();
+        return users && Object.values(users).some(user => user.username === username);
     });
 }
 
-// Send button click event
-sendButton.addEventListener('click', () => {
-    const message = messageInput.value;
-    if (message) {
-        const messagesRef = ref(database, 'messages/');
-        push(messagesRef, message); // Add message to Firebase
-        messageInput.value = ''; // Clear the input field
+// Set username
+setUsernameButton.addEventListener('click', async () => {
+    username = usernameInput.value.trim();
+    if (username) {
+        const exists = await checkUsernameExists(username);
+        if (exists) {
+            alert('Username already taken. Please choose a different one.');
+            return;
+        }
+        userEmoji = generateEmoji(); // Assign a unique emoji to the user
+        const usersRef = ref(database, 'users/');
+        push(usersRef, { username, emoji: userEmoji });
+        
+        document.getElementById('username-container').style.display = 'none';
+        chatWindow.style.display = 'flex';
+        document.querySelector('.input-container').style.display = 'flex';
+        displayMessages();
     }
 });
 
-// Load messages when the page loads
-window.onload = displayMessages;
-const messageElement = document.createElement('div');
-messageElement.classList.add('message');
-messageElement.innerHTML = `<p>${msg}</p>`;
-chatWindow.appendChild(messageElement);
+// Send message
+sendButton.addEventListener('click', () => {
+    const message = messageInput.value;
+    if (message && username) {
+        const messagesRef = ref(database, 'messages/');
+        push(messagesRef, { username, message, emoji: userEmoji });
+        messageInput.value = '';
+    }
+});
+
+// Display messages
+function displayMessages() {
+    const messagesRef = ref(database, 'messages/');
+    onValue(messagesRef, (snapshot) => {
+        chatWindow.innerHTML = '';
+        const messages = snapshot.val();
+        if (messages) {
+            Object.values(messages).forEach(({ username, message, emoji }) => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                messageElement.innerHTML = `
+                    <span style="font-size: 30px; margin-right: 10px;">${emoji}</span>
+                    <p><strong>${username}:</strong> ${message}</p>`;
+                chatWindow.appendChild(messageElement);
+            });
+        }
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    });
+}

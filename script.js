@@ -34,3 +34,32 @@ function sendMessage() {
         imageUpload.value = ""; // Reset the input
     }
 }
+
+onValue(messagesRef, (snapshot) => {
+    chatBox.innerHTML = ""; // Clear chat box before adding new messages
+    snapshot.forEach((childSnapshot) => {
+        const message = childSnapshot.val();
+        const messageElement = document.createElement("div");
+
+        // Check if the message is from the current user
+        if (message.user === username) {
+            messageElement.className = 'message sent'; // User's messages on the right
+        } else {
+            messageElement.className = 'message received'; // Other user's messages on the left
+        }
+
+        messageElement.innerHTML = `<span class="username">${message.user}</span>: ${message.text}`;
+
+        // If there's an image URL, display the image
+        if (message.imageUrl) {
+            const imgElement = document.createElement("img");
+            imgElement.src = message.imageUrl;
+            imgElement.className = 'message-image';
+            messageElement.appendChild(imgElement);
+        }
+
+        chatBox.appendChild(messageElement);
+    });
+    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+});
+

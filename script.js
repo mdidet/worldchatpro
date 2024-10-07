@@ -1,83 +1,36 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
-import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js";
+document.getElementById("send-button").addEventListener("click", sendMessage);
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyC2tOaKpzJ3HSuKL3Dmb86lBEQPdaiowhQ",
-    authDomain: "worldchatpro.firebaseapp.com",
-    projectId: "worldchatpro",
-    storageBucket: "worldchatpro.appspot.com",
-    messagingSenderId: "846276115463",
-    appId: "1:846276115463:web:5605db88ab543677f7bea2",
-    measurementId: "G-SHWXM4VLYS"
-};
+function sendMessage() {
+    const username = document.getElementById("username").value;
+    const messageInput = document.getElementById("message-input").value;
+    const chatBox = document.getElementById("chat-box");
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const database = getDatabase(app);
-
-const chatWindow = document.getElementById('chat-window');
-const messageInput = document.getElementById('message-input');
-const sendButton = document.getElementById('send-button');
-const usernameInput = document.getElementById('username-input');
-const setUsernameButton = document.getElementById('set-username');
-
-let username = localStorage.getItem('username') || '';
-
-// Check if a username already exists in localStorage
-if (username) {
-    document.getElementById('username-container').style.display = 'none';
-    chatWindow.style.display = 'flex';
-    document.querySelector('.input-container').style.display = 'flex';
-    displayMessages();
-} else {
-    document.getElementById('username-container').style.display = 'flex';
-}
-
-setUsernameButton.addEventListener('click', () => {
-    username = usernameInput.value.trim();
-    if (username) {
-        localStorage.setItem('username', username); // Save username in localStorage
-        document.getElementById('username-container').style.display = 'none';
-        chatWindow.style.display = 'flex';
-        document.querySelector('.input-container').style.display = 'flex';
-        displayMessages();
+    if (!username) {
+        alert("Please enter a username.");
+        return;
     }
-});
-
-sendButton.addEventListener('click', () => {
-    const message = messageInput.value;
-    if (message && username) {
-        const messagesRef = ref(database, 'messages/');
-        push(messagesRef, { username, message, emoji: getEmoji(username) });
-        messageInput.value = '';
+    
+    if (messageInput.trim()) {
+        const messageElement = document.createElement("div");
+        messageElement.textContent = `${username}: ${messageInput}`;
+        chatBox.appendChild(messageElement);
+        document.getElementById("message-input").value = "";
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
     }
-});
 
-function displayMessages() {
-    const messagesRef = ref(database, 'messages/');
-    onValue(messagesRef, (snapshot) => {
-        chatWindow.innerHTML = '';
-        const messages = snapshot.val();
-        if (messages) {
-            Object.values(messages).forEach(({ username, message, emoji }) => {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message');
-                messageElement.innerHTML = `<span>${emoji}</span> <strong>${username}:</strong> <p>${message}</p>`;
-                chatWindow.appendChild(messageElement);
-            });
+    // Handle image upload
+    const imageUpload = document.getElementById("image-upload");
+    if (imageUpload.files.length > 0) {
+        const file = imageUpload.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageElement = document.createElement("img");
+            imageElement.src = e.target.result;
+            imageElement.style.maxWidth = "100%";
+            chatBox.appendChild(imageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
         }
-        chatWindow.scrollTop = chatWindow.scrollHeight;
-    });
+        reader.readAsDataURL(file);
+        imageUpload.value = ""; // Reset the input
+    }
 }
-
-function getEmoji(username) {
-    // Map username to a specific emoji
-    const emojis = ['😀', '😎', '🤔', '🎉', '🥳'];
-    const index = username.charCodeAt(0) % emojis.length;
-    return emojis[index];
-}
-

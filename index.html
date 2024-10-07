@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>World Chat</title>
+    <title>Select Username</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="logo">🌐 World Chat</div>
-        <button id="follow-button">Follow</button>
-    </header>
-    <div id="username-container">
-        <input type="text" id="username-input" placeholder="Enter your username">
-        <button id="set-username">Set Username</button>
+    <div class="username-container">
+        <h1>Welcome to Chat Room</h1>
+        <input type="text" id="username" placeholder="Enter a username" required>
+        <button id="join-button">Join Chat</button>
     </div>
-    <div id="chat-window" style="display:none;"></div>
-    <div class="input-container" style="display:none;">
-        <input type="text" id="message-input" placeholder="Type a message...">
-        <button id="send-button">Send</button>
-    </div>
-
-    <script type="module" src="script.js"></script>
+    <script>
+        document.getElementById("join-button").addEventListener("click", function() {
+            const username = document.getElementById("username").value;
+            if (username) {
+                localStorage.setItem("username", username);
+                window.location.href = "chat.html"; // Navigate to the chat room
+            } else {
+                alert("Please enter a username.");
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module">
+        // Import Firebase libraries
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js";
+        import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-storage.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC2tOaKpzJ3HSuKL3Dmb86lBEQPdaiowhQ",
+            authDomain: "worldchatpro.firebaseapp.com",
+            databaseURL: "https://worldchatpro-default-rtdb.firebaseio.com",
+            projectId: "worldchatpro",
+            storageBucket: "worldchatpro.appspot.com",
+            messagingSenderId: "846276115463",
+            appId: "1:846276115463:web:5605db88ab543677f7bea2",
+            measurementId: "G-SHWXM4VLYS"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+
+        const username = localStorage.getItem("username");
+        const chatBox = document.getElementById("chat-box");
+
+        if (!username) {
+            alert("No username found! Please go back and enter a username.");
+            window.location.href = "index.html"; // Redirect back if no username
+        }
+
+        // Function to send messages
+        function sendMessage() {
+            const messageInput = document.getElementById("message-input").value;
+            const imageUpload = document.getElementById("image-upload").files[0];
+
+            if (messageInput.trim() || imageUpload) {
+                // If there's an image uploaded
+                if (imageUpload) {
+                    const storageReference = storageRef(storage, `images/${Date.now()}_${imageUpload.name}`);
+                    uploadBytes(storageReference, imageUpload).then((snapshot) => {
+                        getDownloadURL(snapshot.ref).then((downloadURL) => {
+                            // Save message with image URL
+                            saveMessage(username, messageInput, downloadURL);
+                        });
+                    });
+
+                    // Clear the image input
+                    document.getElementById("image-upload").value = "";
+                } else {
+                    // If there's only text
+                    saveMessage(username, messageInput);
+                }
+
+                document.getElementById("message-input").value = ""; // Clear message input
+            }
+        }
+
+        // Helper function to save the message
+        function saveMessage(user, text, imageUrl = null) {
+            const messagesRef = ref(db, 'messages/' + Date.now());
+            set(messagesRef, {
+                user: user,
+                text: text,
+                imageUrl: imageUrl,
+                timestamp: Date.now()
+            });
+        }
+
+        // Listen for messages in real-time
+        const messagesRef = ref(db, 'messages/');
+        onValue(messagesRef, (snapshot) => {
+            chatBox.innerHTML = ""; // Clear chat box before adding new messages
+            snapshot.forEach((childSnapshot) => {
+                const message = childSnapshot.val();
+                const messageElement = document.createElement("div");
+                messageElement.className = 'message sent';
+                messageElement.innerHTML = `<span class="username">${message.user}</span>: ${message.text}`;
+
+                // If there's an image URL, display the image
+                if (message.imageUrl) {
+                    const imgElement = document.createElement("img");
+                    imgElement.src = message.imageUrl;
+                    imgElement.className = 'message-image';
+                    messageElement.appendChild(imgElement);
+                }
+
+                chatBox.appendChild(messageElement);
+            });
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+        });
+
+        // Event listener for the send button
+        document.getElementById("send-button").addEventListener("click", sendMessage);
+    </script>
+</head>
+<body>
+    <div class="chat-container">
+        <header>
+            <h1>Group Chat</h1>
+            <p id="current-user"></p>
+        </header>
+
+        <div id="chat-box"></div>
+
+        <div class="input-container">
+            <input type="file" id="image-upload" accept="image/*" style="display: none;">
+            <label for="image-upload" class="upload-button">📎</label>
+            <textarea id="message-input" placeholder="Type a message..." rows="1"></textarea>
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+</body>
+</html>

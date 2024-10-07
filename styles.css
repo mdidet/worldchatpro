@@ -81,9 +81,15 @@ button:hover {
 }
 
 .message.sent {
-    background-color: #dcf8c6;
+    background-color: #dcf8c6; /* Your own messages */
     margin-left: auto; /* Right align for the user's messages */
-    border-bottom-right-radius: 0; /* Adjust bubble shape for sent messages */
+    border-bottom-right-radius: 0; /* Adjust bottom corner shape */
+}
+
+.message.received {
+    background-color: #ffffff; /* Other user's messages */
+    margin-right: auto; /* Left align for the received messages */
+    border-bottom-left-radius: 0; /* Adjust bottom corner shape */
 }
 
 .message .username {

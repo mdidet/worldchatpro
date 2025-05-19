@@ -118,8 +118,8 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            font-family: var(--font-family); /* Retained original font variable */
-            background-color: var(--bg-primary); /* Use login background color */
+            font-family: var(--font-family);
+            background-color: var(--bg-primary);
             color: var(--text-paragraph);
             font-size: 15px;
             line-height: 1.5;
@@ -138,9 +138,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start; /* Align items from the top */
-            padding: 0; /* Remove all padding */
-            background-color: inherit; /* Inherit from body */
+            justify-content: flex-start;
+            padding: 0;
+            background-color: inherit;
             overflow-y: auto;
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -158,37 +158,37 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 180px; /* Adjust the height as needed */
-            margin: 0; /* Remove any potential margin */
-            padding: 0; /* Remove any potential padding */
-            z-index: 10; /* Ensure it stays above other content */
-            overflow: hidden; /* Hide any potential overflow from the image */
+            height: 180px;
+            margin: 0;
+            padding: 0;
+            z-index: 10;
+            overflow: hidden;
         }
         .login-header-image img {
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensure image fills the container */
+            object-fit: cover;
         }
 
         #user-setup h2 {
             font-size: 2em;
-            font-weight: 800; /* As per Orbitron weight in Google Fonts */
-            font-family: "Orbitron", sans-serif; /* Reverted to Orbitron */
+            font-weight: 800;
+            font-family: "Orbitron", sans-serif;
             color: var(--text-headline);
-            margin-top: 15px; /* Space below the header */
-            margin-bottom: -19px; /* Adjust margin for close spacing with subtitle */
+            margin-top: 15px;
+            margin-bottom: -19px;
             text-align: center;
-            padding: 0 20px; /* Add horizontal padding back to text elements */
-            width: 100%; /* Ensure text elements respect padding */
+            padding: 0 20px;
+            width: 100%;
         }
         #user-setup .setup-subtitle {
             font-size: 16px;
             color: var(--text-secondary);
             margin-bottom: 30px;
             text-align: center;
-            padding: 0 20px; /* Add horizontal padding back to text elements */
-            width: 100%; /* Ensure text elements respect padding */
+            padding: 0 20px;
+            width: 100%;
         }
 
         #avatar-upload-area {
@@ -201,12 +201,11 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            margin-top: 2px; /* Adjust position below title/subtitle */
+            margin-top: 2px;
             margin-bottom: 30px;
             border: 3px solid var(--border-color);
             overflow: hidden;
             position: relative;
-            /* Explicitly set flex-shrink to 0 to prevent compression in flex container */
             flex-shrink: 0;
         }
         #avatar-upload-area:hover {
@@ -241,8 +240,9 @@
             margin-bottom: 25px;
             text-align: left;
             width: 100%;
-            max-width: 300px; /* Limit input width */
-            padding: 0 20px; /* Add horizontal padding back to input groups */
+            /* Removed fixed max-width for better responsiveness */
+            /* max-width: 300px; */
+            padding: 0 20px;
         }
         .input-group label {
             display: block;
@@ -263,40 +263,39 @@
             transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
         }
         #user-setup input#username-input:focus {
-            border-color: #E88F89; /* Updated border color to match accent highlight */
+            border-color: #E88F89;
             outline: none;
             box-shadow: 0 0 0 3px color-mix(in srgb, #E4B092 20%, transparent);
         }
 
-#user-setup button#join-chat-button {
-  /* Replaced background-color with a linear gradient inspired by the holographic image */
-  background: linear-gradient(
-    45deg,
-    #ff9a9e 0%,     /* Soft Pink */
-    #fad0c4 20%,     /* Light Peach */
-    #a1c4fd 50%,     /* Light Blue */
-    #c2e9fb 70%,     /* Pale Cyan */
-    #a6c0fe 100%     /* Soft Purple */
-  );
-  background-size: 200% auto; /* Make the background larger for animation */
-  color: black; /* Retained original text color */
-  border: none; /* Retained original border style */
-  border-radius: var(--border-radius-md); /* Retained original border radius */
-  padding: 13px 20px; /* Retained original padding */
-  width: 100%; /* Retained original width */
-  max-width: 260px; /* Retained original max-width */
-  font-size: 1.1em; /* Retained original font size */
-  font-weight: 600; /* Retained original font weight */
-  cursor: pointer; /* Retained original cursor style */
-  /* Modified transition to include background-position for the animation */
-  transition: background-position 0.5s ease, transform 0.1s, filter 0.2s;
-  display: flex; /* Retained original display */
-  align-items: center; /* Retained original alignment */
-  justify-content: center; /* Retained original justification */
-  gap: 8px; /* Retained original gap */
-  margin-top: 15px; /* Retained original margin-top */
-  margin-bottom: 20px; /* Retained original margin-bottom */
-}
+        #user-setup button#join-chat-button {
+          background: linear-gradient(
+            45deg,
+            #ff9a9e 0%,
+            #fad0c4 20%,
+            #a1c4fd 50%,
+            #c2e9fb 70%,
+            #a6c0fe 100%
+          );
+          background-size: 200% auto;
+          color: black;
+          border: none;
+          border-radius: var(--border-radius-md);
+          padding: 13px 20px;
+          width: 100%;
+          /* Removed fixed max-width for better responsiveness */
+          /* max-width: 260px; */
+          font-size: 1.1em;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-position 0.5s ease, transform 0.1s, filter 0.2s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          margin-top: 15px;
+          margin-bottom: 20px;
+        }
         #user-setup button#join-chat-button:hover { filter: brightness(0.9); }
         #user-setup button#join-chat-button:active { transform: scale(0.98); }
          #user-setup button#join-chat-button:disabled {
@@ -311,9 +310,10 @@
             color: var(--login-warning);
             margin-top: 8px;
             text-align: center;
-            padding: 0 20px; /* Add horizontal padding */
-            width: 100%; /* Ensure it respects padding */
-            max-width: 300px; /* Align with input/button */
+            padding: 0 20px;
+            width: 100%;
+            /* Removed fixed max-width for better responsiveness */
+            /* max-width: 300px; */
         }
 
         /* Chat Screen */
@@ -338,7 +338,7 @@
         .chat-header #current-user-info {
             display: flex;
             align-items: center;
-            gap: 10px; /* Added gap to separate avatar and text */
+            gap: 10px;
         }
         .chat-header #user-avatar-display {
             width: 36px; height: 36px; border-radius: 50%;
@@ -348,9 +348,8 @@
             font-size: 1.2em;
             border: 1px solid var(--border-color);
         }
-        /* Make username-display visible and style it */
         #username-display {
-            display: block; /* Change from none to block */
+            display: block;
             font-weight: 600;
             font-size: 1.1em;
             color: var(--header-text);
@@ -373,32 +372,31 @@
         .online-dot {
             width: 8px;
             height: 8px;
-            background-color: #0ACF83; /* Figma Green */
+            background-color: #0ACF83;
             border-radius: 50%;
             display: inline-block;
         }
 
-        .header-actions { display: flex; align-items: center; gap: 8px; } /* Increased gap for icons */
+        .header-actions { display: flex; align-items: center; gap: 8px; }
         .header-actions button {
             background: none; border: none;
-            color: var(--text-paragraph); /* Default color for icons */
-            font-size: 24px; /* Material Icons standard size for visibility */
+            color: var(--text-paragraph);
+            font-size: 24px;
             cursor: pointer; padding: 6px;
-            border-radius: 50%; line-height: 1; /* Ensures button is a perfect circle */
+            border-radius: 50%; line-height: 1;
             transition: background-color 0.2s, color 0.2s;
-            display: flex; /* For icon centering */
+            display: flex;
             align-items: center;
             justify-content: center;
         }
         .header-actions button:hover { background-color: color-mix(in srgb, var(--text-paragraph) 10%, transparent); }
         body.dark-mode .header-actions button { color: var(--text-paragraph); }
 
-        /* Material Icons specific styling */
         .material-icons {
             font-family: 'Material Icons';
             font-weight: normal;
             font-style: normal;
-            font-size: 24px;  /* Preferred size */
+            font-size: 24px;
             display: inline-block;
             line-height: 1;
             text-transform: none;
@@ -406,13 +404,9 @@
             word-wrap: normal;
             white-space: nowrap;
             direction: ltr;
-            /* Support for all WebKit browsers. */
             -webkit-font-smoothing: antialiased;
-            /* Support for Safari and Chrome. */
             text-rendering: optimizeLegibility;
-            /* Support for Firefox. */
             -moz-osx-font-smoothing: grayscale;
-            /* Support for IE. */
             font-feature-settings: 'liga';
         }
 
@@ -430,8 +424,9 @@
         .message-item {
             display: flex;
             gap: 10px;
-            max-width: 80%; /* Max width of the entire message item */
-            align-items: flex-start; /* Align avatar with top of message content */
+            /* Adjusted max-width for better responsiveness on mobile */
+            max-width: 90%; /* Changed from 80% */
+            align-items: flex-start;
             opacity: 0;
             transform: translateY(10px);
             animation: slideUpInMessage 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -440,8 +435,8 @@
         @keyframes slideUpInMessage {
             to { opacity: 1; transform: translateY(0); }
         }
-        .message-item.user-message { align-self: flex-end; flex-direction: row-reverse; } /* User messages on right */
-        .message-item.other-message { align-self: flex-start; } /* Other messages on left */
+        .message-item.user-message { align-self: flex-end; flex-direction: row-reverse; }
+        .message-item.other-message { align-self: flex-start; }
 
         .message-avatar-wrapper { flex-shrink: 0; }
         .message-avatar {
@@ -453,16 +448,15 @@
             border: 1px solid var(--border-color);
         }
 
-        /* Container for message bubble and timestamp below it (new structure) */
         .message-content-wrapper {
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Default: aligns content (bubble, timestamp) to the left for others */
-            max-width: calc(100% - 42px); /* Calc space for avatar + gap */
-            min-width: 0; /* Allows content to shrink */
+            align-items: flex-start;
+            max-width: calc(100% - 42px);
+            min-width: 0;
         }
         .user-message .message-content-wrapper {
-            align-items: flex-end; /* Align user's content (bubble, timestamp) to the right */
+            align-items: flex-end;
         }
 
 
@@ -473,43 +467,50 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             word-break: break-word;
-            max-width: 100%; /* Ensure bubble stays within its wrapper */
+            max-width: 100%;
             box-shadow: 0 1px 1px rgba(0,0,0,0.05);
             position: relative;
             min-width: 0;
+            /* Added min-width to prevent squishing and premature wrapping */
+            min-width: 50px; /* Adjust as needed */
         }
         .user-message .message-bubble {
             background-color: #E58087;
             color: var(--user-message-text);
-            border-bottom-right-radius: var(--border-radius-sm); /* Sharp corner at the bottom of sender's bubble */
+            border-bottom-right-radius: var(--border-radius-sm);
         }
         .other-message .message-bubble {
             background-color: var(--bg-secondary);
             color: var(--text-paragraph);
-            border-bottom-left-radius: var(--border-radius-sm); /* Sharp corner at the bottom of receiver's bubble */
+            border-bottom-left-radius: var(--border-radius-sm);
         }
 
         .message-username {
             font-weight: 700; font-size: 0.9em;
-            color: var(--accent-tertiary); /* Use tertiary for other usernames */
-            margin-bottom: 4px; /* Space between username and bubble */
+            color: var(--accent-tertiary);
+            margin-bottom: 4px;
             text-align: left;
-            padding-left: 0px; /* Removed previous indent for cleaner alignment */
-            display: block; /* Ensure it takes full width */
+            padding-left: 0px;
+            display: block;
+            /* Added styles to handle long usernames without wrapping */
+            white-space: nowrap; /* Prevent wrapping */
+            overflow: hidden; /* Hide overflow content */
+            text-overflow: ellipsis; /* Show ellipsis for truncated text */
+            max-width: 100%; /* Ensure it respects parent's width */
         }
-        .user-message .message-username { display: none; /* Hide "You" */ }
+        .user-message .message-username { display: none; }
 
         .message-timestamp {
             font-size: 0.75em;
             color: var(--text-secondary);
-            margin-top: 4px; /* Space between bubble and timestamp */
-            padding: 0 4px; /* Small horizontal padding to give it some room */
+            margin-top: 4px;
+            padding: 0 4px;
         }
         .user-message .message-timestamp {
-            align-self: flex-end; /* Align timestamp to the right for user messages */
+            align-self: flex-end;
         }
         .other-message .message-timestamp {
-            align-self: flex-start; /* Align timestamp to the left for other messages */
+            align-self: flex-start;
         }
 
         .message-text { font-size: 1em; padding-top: 2px; }
@@ -531,8 +532,8 @@
         }
         #message-form { display: flex; align-items: flex-end; gap: 10px; }
         #message-input {
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
-            -ms-overflow-style: none;  /* Hide scrollbar for IE/Edge */
+            scrollbar-width: none;
+            -ms-overflow-style: none;
             flex-grow: 1; padding: 10px 15px;
             border-radius: var(--border-radius-lg);
             resize: none; font-size: 1em; line-height: 1.4;
@@ -541,11 +542,10 @@
             max-height: 100px;
             transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
         }
-        /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
         #message-input::-webkit-scrollbar { display: none; }
 
         #message-input:focus {
-            border-color: #E88F89; /* Updated border color to match accent highlight */
+            border-color: #E88F89;
             outline: none;
             box-shadow: 0 0 0 3px color-mix(in srgb, #E4B092 20%, transparent);
         }
@@ -576,6 +576,39 @@
         }
 
         @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Media Queries for better responsiveness */
+        @media (max-width: 600px) {
+            #user-setup h2 {
+                font-size: 1.8em;
+            }
+            #user-setup .setup-subtitle {
+                font-size: 15px;
+            }
+
+            /* Adjust padding for message container on smaller screens */
+            #messages-container {
+                padding: 10px;
+            }
+
+            /* Ensure message form and input are well-spaced */
+            #message-form-wrapper {
+                padding: 10px;
+            }
+            #message-input {
+                padding: 8px 12px;
+            }
+            #message-form button#send-button {
+                width: 36px;
+                height: 36px;
+                font-size: 1.2em;
+            }
+
+            /* Make message items take even more width on very small screens */
+            .message-item {
+                max-width: 95%;
+            }
+        }
     </style>
 </head>
 <body>

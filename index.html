@@ -118,8 +118,8 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
-            font-family: var(--font-family);
-            background-color: var(--bg-primary);
+            font-family: var(--font-family); /* Retained original font variable */
+            background-color: var(--bg-primary); /* Use login background color */
             color: var(--text-paragraph);
             font-size: 15px;
             line-height: 1.5;
@@ -138,9 +138,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            padding: 0;
-            background-color: inherit;
+            justify-content: flex-start; /* Align items from the top */
+            padding: 0; /* Remove all padding */
+            background-color: inherit; /* Inherit from body */
             overflow-y: auto;
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -158,37 +158,37 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 180px;
-            margin: 0;
-            padding: 0;
-            z-index: 10;
-            overflow: hidden;
+            height: 180px; /* Adjust the height as needed */
+            margin: 0; /* Remove any potential margin */
+            padding: 0; /* Remove any potential padding */
+            z-index: 10; /* Ensure it stays above other content */
+            overflow: hidden; /* Hide any potential overflow from the image */
         }
         .login-header-image img {
             display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Ensure image fills the container */
         }
 
         #user-setup h2 {
             font-size: 2em;
-            font-weight: 800;
-            font-family: "Orbitron", sans-serif;
+            font-weight: 800; /* As per Orbitron weight in Google Fonts */
+            font-family: "Orbitron", sans-serif; /* Reverted to Orbitron */
             color: var(--text-headline);
-            margin-top: 15px;
-            margin-bottom: -19px;
+            margin-top: 15px; /* Space below the header */
+            margin-bottom: -19px; /* Adjust margin for close spacing with subtitle */
             text-align: center;
-            padding: 0 20px;
-            width: 100%;
+            padding: 0 20px; /* Add horizontal padding back to text elements */
+            width: 100%; /* Ensure text elements respect padding */
         }
         #user-setup .setup-subtitle {
             font-size: 16px;
             color: var(--text-secondary);
             margin-bottom: 30px;
             text-align: center;
-            padding: 0 20px;
-            width: 100%;
+            padding: 0 20px; /* Add horizontal padding back to text elements */
+            width: 100%; /* Ensure text elements respect padding */
         }
 
         #avatar-upload-area {
@@ -201,11 +201,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            margin-top: 2px;
+            margin-top: 2px; /* Adjust position below title/subtitle */
             margin-bottom: 30px;
             border: 3px solid var(--border-color);
             overflow: hidden;
             position: relative;
+            /* Explicitly set flex-shrink to 0 to prevent compression in flex container */
             flex-shrink: 0;
         }
         #avatar-upload-area:hover {
@@ -240,9 +241,8 @@
             margin-bottom: 25px;
             text-align: left;
             width: 100%;
-            /* Removed fixed max-width for better responsiveness */
-            /* max-width: 300px; */
-            padding: 0 20px;
+            max-width: 300px; /* Limit input width */
+            padding: 0 20px; /* Add horizontal padding back to input groups */
         }
         .input-group label {
             display: block;
@@ -263,39 +263,40 @@
             transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
         }
         #user-setup input#username-input:focus {
-            border-color: #E88F89;
+            border-color: #E88F89; /* Updated border color to match accent highlight */
             outline: none;
             box-shadow: 0 0 0 3px color-mix(in srgb, #E4B092 20%, transparent);
         }
 
-        #user-setup button#join-chat-button {
-          background: linear-gradient(
-            45deg,
-            #ff9a9e 0%,
-            #fad0c4 20%,
-            #a1c4fd 50%,
-            #c2e9fb 70%,
-            #a6c0fe 100%
-          );
-          background-size: 200% auto;
-          color: black;
-          border: none;
-          border-radius: var(--border-radius-md);
-          padding: 13px 20px;
-          width: 100%;
-          /* Removed fixed max-width for better responsiveness */
-          /* max-width: 260px; */
-          font-size: 1.1em;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background-position 0.5s ease, transform 0.1s, filter 0.2s;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          margin-top: 15px;
-          margin-bottom: 20px;
-        }
+#user-setup button#join-chat-button {
+  /* Replaced background-color with a linear gradient inspired by the holographic image */
+  background: linear-gradient(
+    45deg,
+    #ff9a9e 0%,     /* Soft Pink */
+    #fad0c4 20%,     /* Light Peach */
+    #a1c4fd 50%,     /* Light Blue */
+    #c2e9fb 70%,     /* Pale Cyan */
+    #a6c0fe 100%     /* Soft Purple */
+  );
+  background-size: 200% auto; /* Make the background larger for animation */
+  color: black; /* Retained original text color */
+  border: none; /* Retained original border style */
+  border-radius: var(--border-radius-md); /* Retained original border radius */
+  padding: 13px 20px; /* Retained original padding */
+  width: 100%; /* Retained original width */
+  max-width: 260px; /* Retained original max-width */
+  font-size: 1.1em; /* Retained original font size */
+  font-weight: 600; /* Retained original font weight */
+  cursor: pointer; /* Retained original cursor style */
+  /* Modified transition to include background-position for the animation */
+  transition: background-position 0.5s ease, transform 0.1s, filter 0.2s;
+  display: flex; /* Retained original display */
+  align-items: center; /* Retained original alignment */
+  justify-content: center; /* Retained original justification */
+  gap: 8px; /* Retained original gap */
+  margin-top: 15px; /* Retained original margin-top */
+  margin-bottom: 20px; /* Retained original margin-bottom */
+}
         #user-setup button#join-chat-button:hover { filter: brightness(0.9); }
         #user-setup button#join-chat-button:active { transform: scale(0.98); }
          #user-setup button#join-chat-button:disabled {
@@ -310,10 +311,9 @@
             color: var(--login-warning);
             margin-top: 8px;
             text-align: center;
-            padding: 0 20px;
-            width: 100%;
-            /* Removed fixed max-width for better responsiveness */
-            /* max-width: 300px; */
+            padding: 0 20px; /* Add horizontal padding */
+            width: 100%; /* Ensure it respects padding */
+            max-width: 300px; /* Align with input/button */
         }
 
         /* Chat Screen */
@@ -338,7 +338,7 @@
         .chat-header #current-user-info {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 10px; /* Added gap to separate avatar and text */
         }
         .chat-header #user-avatar-display {
             width: 36px; height: 36px; border-radius: 50%;
@@ -348,8 +348,9 @@
             font-size: 1.2em;
             border: 1px solid var(--border-color);
         }
+        /* Make username-display visible and style it */
         #username-display {
-            display: block;
+            display: block; /* Change from none to block */
             font-weight: 600;
             font-size: 1.1em;
             color: var(--header-text);
@@ -372,31 +373,32 @@
         .online-dot {
             width: 8px;
             height: 8px;
-            background-color: #0ACF83;
+            background-color: #0ACF83; /* Figma Green */
             border-radius: 50%;
             display: inline-block;
         }
 
-        .header-actions { display: flex; align-items: center; gap: 8px; }
+        .header-actions { display: flex; align-items: center; gap: 8px; } /* Increased gap for icons */
         .header-actions button {
             background: none; border: none;
-            color: var(--text-paragraph);
-            font-size: 24px;
+            color: var(--text-paragraph); /* Default color for icons */
+            font-size: 24px; /* Material Icons standard size for visibility */
             cursor: pointer; padding: 6px;
-            border-radius: 50%; line-height: 1;
+            border-radius: 50%; line-height: 1; /* Ensures button is a perfect circle */
             transition: background-color 0.2s, color 0.2s;
-            display: flex;
+            display: flex; /* For icon centering */
             align-items: center;
             justify-content: center;
         }
         .header-actions button:hover { background-color: color-mix(in srgb, var(--text-paragraph) 10%, transparent); }
         body.dark-mode .header-actions button { color: var(--text-paragraph); }
 
+        /* Material Icons specific styling */
         .material-icons {
             font-family: 'Material Icons';
             font-weight: normal;
             font-style: normal;
-            font-size: 24px;
+            font-size: 24px;  /* Preferred size */
             display: inline-block;
             line-height: 1;
             text-transform: none;
@@ -404,9 +406,13 @@
             word-wrap: normal;
             white-space: nowrap;
             direction: ltr;
+            /* Support for all WebKit browsers. */
             -webkit-font-smoothing: antialiased;
+            /* Support for Safari and Chrome. */
             text-rendering: optimizeLegibility;
+            /* Support for Firefox. */
             -moz-osx-font-smoothing: grayscale;
+            /* Support for IE. */
             font-feature-settings: 'liga';
         }
 
@@ -424,9 +430,8 @@
         .message-item {
             display: flex;
             gap: 10px;
-            /* Adjusted max-width for better responsiveness on mobile */
-            max-width: 90%; /* Changed from 80% */
-            align-items: flex-start;
+            max-width: 80%; /* Max width of the entire message item */
+            align-items: flex-start; /* Align avatar with top of message content */
             opacity: 0;
             transform: translateY(10px);
             animation: slideUpInMessage 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
@@ -435,8 +440,8 @@
         @keyframes slideUpInMessage {
             to { opacity: 1; transform: translateY(0); }
         }
-        .message-item.user-message { align-self: flex-end; flex-direction: row-reverse; }
-        .message-item.other-message { align-self: flex-start; }
+        .message-item.user-message { align-self: flex-end; flex-direction: row-reverse; } /* User messages on right */
+        .message-item.other-message { align-self: flex-start; } /* Other messages on left */
 
         .message-avatar-wrapper { flex-shrink: 0; }
         .message-avatar {
@@ -448,15 +453,16 @@
             border: 1px solid var(--border-color);
         }
 
+        /* Container for message bubble and timestamp below it (new structure) */
         .message-content-wrapper {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            max-width: calc(100% - 42px);
-            min-width: 0;
+            align-items: flex-start; /* Default: aligns content (bubble, timestamp) to the left for others */
+            max-width: calc(100% - 42px); /* Calc space for avatar + gap */
+            min-width: 0; /* Allows content to shrink */
         }
         .user-message .message-content-wrapper {
-            align-items: flex-end;
+            align-items: flex-end; /* Align user's content (bubble, timestamp) to the right */
         }
 
 
@@ -467,50 +473,43 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             word-break: break-word;
-            max-width: 100%;
+            max-width: 100%; /* Ensure bubble stays within its wrapper */
             box-shadow: 0 1px 1px rgba(0,0,0,0.05);
             position: relative;
             min-width: 0;
-            /* Added min-width to prevent squishing and premature wrapping */
-            min-width: 50px; /* Adjust as needed */
         }
         .user-message .message-bubble {
             background-color: #E58087;
             color: var(--user-message-text);
-            border-bottom-right-radius: var(--border-radius-sm);
+            border-bottom-right-radius: var(--border-radius-sm); /* Sharp corner at the bottom of sender's bubble */
         }
         .other-message .message-bubble {
             background-color: var(--bg-secondary);
             color: var(--text-paragraph);
-            border-bottom-left-radius: var(--border-radius-sm);
+            border-bottom-left-radius: var(--border-radius-sm); /* Sharp corner at the bottom of receiver's bubble */
         }
 
         .message-username {
             font-weight: 700; font-size: 0.9em;
-            color: var(--accent-tertiary);
-            margin-bottom: 4px;
+            color: var(--accent-tertiary); /* Use tertiary for other usernames */
+            margin-bottom: 4px; /* Space between username and bubble */
             text-align: left;
-            padding-left: 0px;
-            display: block;
-            /* Added styles to handle long usernames without wrapping */
-            white-space: nowrap; /* Prevent wrapping */
-            overflow: hidden; /* Hide overflow content */
-            text-overflow: ellipsis; /* Show ellipsis for truncated text */
-            max-width: 100%; /* Ensure it respects parent's width */
+            padding-left: 0px; /* Removed previous indent for cleaner alignment */
+            display: block; /* Ensure it takes full width */
         }
-        .user-message .message-username { display: none; }
+        .user-message .message-username { display: none; /* Hide "You" */ }
 
         .message-timestamp {
             font-size: 0.75em;
             color: var(--text-secondary);
-            margin-top: 4px;
-            padding: 0 4px;
+            margin-top: 4px; /* Space between bubble and timestamp */
+            padding: 0 4px; /* Small horizontal padding to give it some room */
         }
         .user-message .message-timestamp {
-            align-self: flex-end;
+            align-self: flex-end; /* Align timestamp to the right for user messages */
         }
         .other-message .message-timestamp {
-            align-self: flex-start;
+            align-self: flex-start; /* Align timestamp to the left for other messages */
         }
 
         .message-text { font-size: 1em; padding-top: 2px; }
@@ -532,8 +531,8 @@
         }
         #message-form { display: flex; align-items: flex-end; gap: 10px; }
         #message-input {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            -ms-overflow-style: none;  /* Hide scrollbar for IE/Edge */
             flex-grow: 1; padding: 10px 15px;
             border-radius: var(--border-radius-lg);
             resize: none; font-size: 1em; line-height: 1.4;
@@ -542,10 +541,11 @@
             max-height: 100px;
             transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
         }
+        /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
         #message-input::-webkit-scrollbar { display: none; }
 
         #message-input:focus {
-            border-color: #E88F89;
+            border-color: #E88F89; /* Updated border color to match accent highlight */
             outline: none;
             box-shadow: 0 0 0 3px color-mix(in srgb, #E4B092 20%, transparent);
         }
@@ -576,39 +576,6 @@
         }
 
         @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* Media Queries for better responsiveness */
-        @media (max-width: 600px) {
-            #user-setup h2 {
-                font-size: 1.8em;
-            }
-            #user-setup .setup-subtitle {
-                font-size: 15px;
-            }
-
-            /* Adjust padding for message container on smaller screens */
-            #messages-container {
-                padding: 10px;
-            }
-
-            /* Ensure message form and input are well-spaced */
-            #message-form-wrapper {
-                padding: 10px;
-            }
-            #message-input {
-                padding: 8px 12px;
-            }
-            #message-form button#send-button {
-                width: 36px;
-                height: 36px;
-                font-size: 1.2em;
-            }
-
-            /* Make message items take even more width on very small screens */
-            .message-item {
-                max-width: 95%;
-            }
-        }
     </style>
 </head>
 <body>
@@ -671,29 +638,24 @@
     </div>
 
     <script type="module">
-        // Firebase SDK imports
+        // Firebase SDK imports (same)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
         import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, doc, updateDoc, serverTimestamp, getDoc } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js";
         import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
 
-        // Your Firebase Configuration - KEEP THIS AS IS
-        const firebaseConfig = {
-  apiKey: "AIzaSyC9MtXDhC8oTawJ28kInhEptnZQkfaW4mw",
-  authDomain: "global-chat-9491c.firebaseapp.com",
-  projectId: "global-chat-9491c",
-  storageBucket: "global-chat-9491c.firebasestorage.app",
-  messagingSenderId: "624988260504",
-  appId: "1:624988260504:web:09187ca758c66fa35b68ed"
-};
+        const firebaseConfig = { // Same
+            apiKey: "AIzaSyCkMQF4vZpE75EkaPdhdJ6hDoKaRd2E7co",
+            authDomain: "figmaglobalchat.firebaseapp.com",
+            projectId: "figmaglobalchat",
+            storageBucket: "figmaglobalchat.firebasestorage.app",
+            messagingSenderId: "388247850294",
+            appId: "1:388247850294:web:788cf6843a30c0cacaf797"
+        };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const storage = getStorage(app);
         const messagesCollection = collection(db, "messages");
-
-        // Keys for localStorage (replaces Figma's clientStorage)
-        const USER_DATA_KEY = 'figmaGlobalChatUser';
-        const THEME_KEY = 'figmaGlobalChatTheme';
 
         // DOM Elements
         const body = document.body;
@@ -714,43 +676,49 @@
         const sendButton = document.getElementById('send-button');
 
         const logoutButton = document.getElementById('logout-button');
-        const usernameDisplay = document.getElementById('username-display');
+        const usernameDisplay = document.getElementById('username-display'); // Kept for JS logic if needed, but not rendered in UI
         const userAvatarDisplay = document.getElementById('user-avatar-display');
         const themeToggleButton = document.getElementById('theme-toggle-button');
         const messageCountDisplay = document.getElementById('message-count');
 
-        // State
+
+        // State (same)
         let currentUser = null;
         let selectedAvatarFile = null;
         let currentTheme = 'light';
         let unsubscribeMessages = null;
 
-        // --- Initial Load Logic (Adapted from Figma plugin's 'ui-ready' handler) ---
-        function initializeWebApp() {
-            // Fetch stored data from localStorage
-            const userDataString = localStorage.getItem(USER_DATA_KEY);
-            const theme = localStorage.getItem(THEME_KEY) || 'light';
+        // --- Communication & Initial Load (same) ---
+        window.onmessage = (event) => {
+            const msg = event.data.pluginMessage;
+            if (!msg) return;
 
-            setTheme(theme); // Apply theme first
-
-            if (userDataString) {
-                try {
-                    currentUser = JSON.parse(userDataString);
+            if (msg.type === 'initialLoadData') {
+                setTheme(msg.theme || 'light');
+                if (msg.userData) {
+                    currentUser = msg.userData;
                     showChatScreen();
-                } catch (err) {
-                    console.error('Error parsing user data from localStorage:', err);
-                    localStorage.removeItem(USER_DATA_KEY); // Clear corrupt data
-                    currentUser = null;
+                } else {
                     showUserSetupScreen();
                 }
-            } else {
-                showUserSetupScreen();
+            } else if (msg.type === 'userDataSaved') {
+                currentUser = msg.data;
+                showChatScreen();
+                joinLoader.classList.add('hidden');
+                joinChatButton.disabled = false;
+            } else if (msg.type === 'notify') {
+                console.warn('Notification from code.js:', msg.message);
+                 if (joinLoader && !joinLoader.classList.contains('hidden')) {
+                     joinLoader.classList.add('hidden');
+                     joinChatButton.disabled = false;
+                 }
+            } else if (msg.type === 'clearUserDataSuccess') {
+                showUserSetupScreen(); // Explicitly call this on successful clear
             }
-        }
-        // Call initializeWebApp when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', initializeWebApp);
+        };
+        parent.postMessage({ pluginMessage: { type: 'ui-ready' } }, '*');
 
-        // --- Theme Management (modified to use localStorage) ---
+        // --- Theme Management ---
         function setTheme(theme) {
             currentTheme = theme;
             if (theme === 'dark') {
@@ -760,23 +728,23 @@
                 body.classList.remove('dark-mode');
                 themeToggleButton.querySelector('.material-icons').textContent = 'light_mode'; // Change to light mode icon
             }
-            localStorage.setItem(THEME_KEY, currentTheme); // Save theme preference to localStorage
+            parent.postMessage({ pluginMessage: { type: 'saveThemePreference', theme: currentTheme } }, '*');
         }
         themeToggleButton.addEventListener('click', () => {
             setTheme(currentTheme === 'light' ? 'dark' : 'light');
         });
 
-        // --- User Setup & Profile Image (modified to use localStorage and standard alerts) ---
+        // --- User Setup & Profile Image (same logic) ---
         avatarUploadInput.addEventListener('change', (event) => {
-            const file = event.target.files ? event.target.files[0] : null;
+            const file = event.target.files ? event.target.files [0] : null;
             if (file) {
-                if (file.size > 200 * 1024) { // 200KB limit
+                if (file.size > 200 * 1024) {
                     fileSizeWarning.textContent = 'Image too large! Max 200KB.';
                     fileSizeWarning.classList.remove('hidden');
                     avatarPreview.classList.add('hidden');
                     avatarUploadPlaceholder.classList.remove('hidden');
                     selectedAvatarFile = null;
-                    avatarUploadInput.value = ''; // Clear input
+                    avatarUploadInput.value = '';
                     return;
                 }
                  if (!file.type.startsWith('image/')) {
@@ -788,7 +756,7 @@
                     avatarUploadInput.value = '';
                     return;
                  }
-                fileSizeWarning.classList.add('hidden'); // Hide warning if valid
+                fileSizeWarning.classList.add('hidden');
                 selectedAvatarFile = file;
                 const reader = new FileReader();
                 reader.onload = (e) => {
@@ -809,7 +777,7 @@
         joinChatButton.addEventListener('click', async () => {
             const username = usernameInput.value.trim();
             if (!username) {
-                alert('Display Name is required!'); // Replaced figma.notify with alert
+                parent.postMessage({ pluginMessage: { type: 'notify', message: 'Display Name is required!' } }, '*');
                 return;
             }
 
@@ -828,7 +796,7 @@
                     avatarUrl = await getDownloadURL(storageRef);
                 } catch (error) {
                     console.error("Error uploading avatar: ", error);
-                    alert('Error uploading image. Please try again.'); // Replaced figma.notify with alert
+                    parent.postMessage({ pluginMessage: { type: 'notify', message: 'Error uploading image. Please try again.', timeout: 5000 } }, '*');
                     joinLoader.classList.add('hidden');
                     joinChatButton.disabled = false;
                     return;
@@ -836,10 +804,7 @@
             }
 
             currentUser = { username, avatar: avatarUrl };
-            localStorage.setItem(USER_DATA_KEY, JSON.stringify(currentUser)); // Save user data to localStorage
-            showChatScreen(); // Directly show chat screen
-            joinLoader.classList.add('hidden');
-            joinChatButton.disabled = false;
+            parent.postMessage({ pluginMessage: { type: 'saveUserData', data: currentUser } }, '*');
         });
 
         function showUserSetupScreen() {
@@ -862,12 +827,12 @@
                 usernameInput.focus();
             }
 
-            if (messagesList) messagesList.innerHTML = ''; // Clear messages
-            if (unsubscribeMessages) { unsubscribeMessages(); unsubscribeMessages = null; } // Unsubscribe from messages
+            if (messagesList) messagesList.innerHTML = '';
+            if (unsubscribeMessages) { unsubscribeMessages(); unsubscribeMessages = null; }
         }
 
         function showChatScreen() {
-            if (!currentUser) { showUserSetupScreen(); return; } // Fallback if no current user
+            if (!currentUser) { showUserSetupScreen(); return; }
             userAvatarDisplay.src = currentUser.avatar && currentUser.avatar.startsWith('http') ? currentUser.avatar : '';
             userAvatarDisplay.alt = currentUser.username;
             // Use Material Icons for default avatar text
@@ -880,60 +845,59 @@
 
             userSetupScreen.style.display = 'none';
             chatScreen.style.display = 'flex';
-            loadMessages(); // Start loading messages
+            loadMessages();
             messageInput.value = '';
-            messageInput.style.height = 'auto'; // Reset height
-            sendButton.disabled = true; // Disable send button initially
+            messageInput.style.height = 'auto';
+            sendButton.disabled = true;
             messageInput.focus();
         }
 
         logoutButton.addEventListener('click', () => {
-            localStorage.removeItem(USER_DATA_KEY); // Clear user data from localStorage
-            localStorage.removeItem(THEME_KEY); // Clear theme preference too
-            showUserSetupScreen(); // Show setup screen directly
+            parent.postMessage({ pluginMessage: { type: 'clearUserData' } }, '*');
+            // The 'clearUserDataSuccess' message from code.js will trigger showUserSetupScreen()
         });
 
-        // --- Chat Functionality (alert messages modified) ---
+        // --- Chat Functionality (same) ---
         messageInput.addEventListener('input', () => {
             const inputHeight = Math.min(messageInput.scrollHeight, 100);
             if (messageInput.style.height !== inputHeight + 'px') {
-                messageInput.style.height = 'auto'; // Reset to auto to calculate new scrollHeight
+                messageInput.style.height = 'auto';
                 messageInput.style.height = inputHeight + 'px';
             }
-            sendButton.disabled = messageInput.value.trim() === ''; // Disable send button if empty
+            sendButton.disabled = messageInput.value.trim() === '';
         });
 
         messageForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Prevent default form submission
+            e.preventDefault();
             const text = messageInput.value.trim();
-            if (!text || !currentUser) return; // Don't send empty messages or if no user
-            sendButton.disabled = true; // Disable button to prevent multiple sends
+            if (!text || !currentUser) return;
+            sendButton.disabled = true;
             const messageData = {
                 username: currentUser.username,
                 avatar: currentUser.avatar,
                 text: text,
-                timestamp: serverTimestamp(), // Firebase server timestamp
+                timestamp: serverTimestamp(),
             };
 
             try {
                 await addDoc(messagesCollection, messageData);
-                messageInput.value = ''; // Clear input
-                messageInput.style.height = 'auto'; // Reset height
-                sendButton.disabled = true; // Keep disabled until new input
+                messageInput.value = '';
+                messageInput.style.height = 'auto';
+                sendButton.disabled = true;
             } catch (error) {
                 console.error("Error sending message: ", error);
-                alert('Error sending message.'); // Replaced figma.notify with alert
-                sendButton.disabled = messageInput.value.trim() === ''; // Re-enable if there's text
+                parent.postMessage({ pluginMessage: { type: 'notify', message: 'Error sending message.' } }, '*');
+                sendButton.disabled = messageInput.value.trim() === '';
             }
         });
 
         function loadMessages() {
-            if (unsubscribeMessages) unsubscribeMessages(); // Unsubscribe from previous listener
-            if (!currentUser) return; // Don't load if no user
-            const q = query(messagesCollection, orderBy("timestamp", "asc")); // Order messages by timestamp
+            if (unsubscribeMessages) unsubscribeMessages();
+            if (!currentUser) return;
+            const q = query(messagesCollection, orderBy("timestamp", "asc"));
             unsubscribeMessages = onSnapshot(q, (querySnapshot) => {
                 const isScrolledToBottom = messagesContainer.scrollHeight - messagesContainer.clientHeight <= messagesContainer.scrollTop + 50;
-                messagesList.innerHTML = ''; // Clear existing messages
+                messagesList.innerHTML = '';
                 let messageCount = 0; // Initialize message count
                 querySnapshot.forEach((doc) => {
                     renderMessage(doc.id, doc.data());
@@ -944,13 +908,12 @@
                     messageCountDisplay.textContent = `${messageCount} messages`;
                 }
 
-                // Scroll to bottom if user was already at the bottom or it's their own new message
                 if (isScrolledToBottom || querySnapshot.docChanges().some(change => change.type === "added" && change.doc.data().username === currentUser.username)) {
                     messagesContainer.scrollTop = messagesContainer.scrollHeight;
                 }
             }, (error) => {
                 console.error("Error loading messages: ", error);
-                alert('Error loading messages.'); // Replaced figma.notify with alert
+                parent.postMessage({ pluginMessage: { type: 'notify', message: 'Error loading messages.' } }, '*');
             });
         }
 
@@ -979,7 +942,6 @@
             const messageBubble = document.createElement('div');
             messageBubble.classList.add('message-bubble');
 
-            // Convert URLs in message text to clickable links
             const textWithLinks = data.text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
 
             // Message Bubble Content
@@ -1000,6 +962,14 @@
             messageItem.appendChild(messageContentWrapper);
             messagesList.appendChild(messageItem);
         }
+
+         // Update avatar preview and placeholder visibility when showing setup screen
+         const originalShowUserSetupScreen = showUserSetupScreen;
+         showUserSetupScreen = () => {
+             originalShowUserSetupScreen();
+              if (avatarUploadPlaceholder) avatarUploadPlaceholder.classList.remove('hidden');
+              if (avatarPreview) avatarPreview.classList.add('hidden');
+         };
     </script>
 </body>
 </html>

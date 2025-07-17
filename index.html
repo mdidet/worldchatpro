@@ -436,8 +436,8 @@
                 
                 // Update badge overlay
                 if (badgeName && currentImage) {
-                    // *** THIS IS THE UPDATED LINE ***
-                    const badgeImage = badgeName; 
+                    // This line correctly points to the images folder and adds .png
+                    const badgeImage = `images/${badgeName}.png`; 
                     badgeOverlay.src = badgeImage;
                     badgeOverlay.style.display = 'block';
                 }
@@ -492,13 +492,13 @@
                 };
                 
                 badgeImg.onerror = function() {
-                    alert('Badge image not found. Make sure the badge file (e.g., "designer") is in the same folder as index.html and has no file extension.');
+                    alert('Badge image not found. Please make sure the image exists in the "images" folder and has a .png extension.');
                     downloadBtn.textContent = 'Download Image';
                     downloadBtn.disabled = false;
                 };
                 
-                // *** THIS IS THE UPDATED LINE ***
-                badgeImg.src = currentBadge;
+                 // This line correctly points to the images folder and adds .png
+                badgeImg.src = `images/${currentBadge}.png`;
             };
             img.src = currentImage;
         });
